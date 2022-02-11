@@ -1,29 +1,23 @@
-class Book:
-    def __init__(self, name, author, data_published, genre):
-        self.name = name
-        self.author = author
-        self.date_published = data_published
-        self.genre = genre
+class Editor:
+    license_key = '3647-8947'
 
-    def __repr__(self):
-        return f'{self.name}, {self.author}, {self.date_published}, {self.genre}'
+    def view_document(self):
+        return 'You are viewing a document'
 
-    def __str__(self):
-        return f'{self.name}, {self.author}, {self.date_published}, {self.genre}'
-
-    def __eq__(self, other):
-        if isinstance(other, Book):
-            return (
-                        self.name == other.name and
-                        self.author == other.author and
-                        self.date_published == self.date_published and
-                        self.genre == other.genre)
-        return NotImplemented
+    def edit_document(self):
+        return 'Editing is unavailable for free version'
 
 
-book1 = Book('Harry potter', 'J.K.Rowling', '1999', 'adventure')
-book2 = Book('Python for Probability', 'Jose Unpingco', '2019', 'puzzle')
-book3 = Book('Harry potter', 'J.K.Rowling', '1999', 'adventure')
+class ProEditor(Editor):
 
-print(book1 == book2)
-print(book1 == book3)
+    def edit_document(self):
+        return 'You are now able to edit'
+
+
+key = input('Input the license key: ')
+if key != Editor.license_key:
+    noEdit = Editor()
+    print(noEdit.edit_document())
+else:
+    yesEdit = ProEditor()
+    print(yesEdit.edit_document())
